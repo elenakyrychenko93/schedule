@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily schedule</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:400,500,700" rel="stylesheet">
+
+    <link rel="icon" href="images/favicon.ico">
+    <link href="css/css-bundle.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+
+    <!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>-->
+    <!--<script>-->
+    <!--// Initialize Firebase-->
+    <!--var config = {-->
+    <!--apiKey: "AIzaSyDWuSq3p5C_8XVOSJr6xeBWIbO6x0byqAY",-->
+    <!--authDomain: "articles-cdc1a.firebaseapp.com",-->
+    <!--databaseURL: "https://articles-cdc1a.firebaseio.com",-->
+    <!--projectId: "articles-cdc1a",-->
+    <!--storageBucket: "articles-cdc1a.appspot.com",-->
+    <!--messagingSenderId: "204849781599"-->
+    <!--};-->
+    <!--firebase.initializeApp(config);-->
+    <!--</script>-->
+    <script src="js/common.js"></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Daily schedule</h1>
+</header>
+
+<main>
+    <span class="meeting">Hello dear {{autorizationName}}! Your schedule for today:</span>
+
+    <table class="schedule" cellspacing="0">
+        <tr>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>9:30</td>
+            <td>10:00</td>
+            <td>Description</td>
+        </tr>
+        <tr class="active">
+            <td>9:30</td>
+            <td>10:00</td>
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td>9:30</td>
+            <td>10:00</td>
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td>9:30</td>
+            <td>10:00</td>
+            <td>Description</td>
+        </tr>
+    </table>
+
+
+</main>
+
+<footer></footer>
+
+
+<script src="js/jquery-2.2.3.min.js"></script>
+<!--<script src="js/common.js"></script>-->
+</body>
+
+</html>
