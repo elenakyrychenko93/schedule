@@ -24,46 +24,38 @@
     <!--};-->
     <!--firebase.initializeApp(config);-->
     <!--</script>-->
+    <script src="https://use.fontawesome.com/e7b5a02103.js"></script>
     <script src="js/common.js"></script>
 
 </head>
 
-<body>
+<body ng-app="scheduleApp" ng-controller="scheduleController">
 
 <header>
-<h1>Daily schedule</h1>
+    <h1>Daily schedule</h1>
 </header>
 
 <main>
     <span class="meeting">Hello dear {{autorizationName}}! Your schedule for today:</span>
 
-    <table class="schedule" cellspacing="0">
-        <tr>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>9:30</td>
-            <td>10:00</td>
-            <td>Description</td>
-        </tr>
-        <tr class="active">
-            <td>9:30</td>
-            <td>10:00</td>
-            <td>Description</td>
-        </tr>
-        <tr>
-            <td>9:30</td>
-            <td>10:00</td>
-            <td>Description</td>
-        </tr>
-        <tr>
-            <td>9:30</td>
-            <td>10:00</td>
-            <td>Description</td>
-        </tr>
-    </table>
+    <div class="schedule">
+        <div class="tr">
+            <div class="th">Start time</div>
+            <div class="th">End time</div>
+            <div class="th">Description</div>
+        </div>
+        <tr-action action="action" schedule="schedule" ng-repeat="action in schedule track by action.id"></tr-action>
+    </div>
+
+    <button ng-click="showAddForm = !showAddForm">Add an action</button>
+    <form novalidate class="add-form" id="addForm" ng-show="showAddForm">
+        <!--ng-submit="addArticle(name, quote)"-->
+
+        <input ng-model="formInfo.StartTime" type="time" name="StartTime" placeholder="StartTime">
+        <input ng-model="formInfo.EndTime" type="time" name="EndTime" placeholder="EndTime">
+        <textarea type="text" ng-model="formInfo.Description" placeholder="Description" name="Description"></textarea>
+        <button type="submit" ng-click="addAction()">Submit</button>
+    </form>
 
 
 </main>
@@ -76,3 +68,13 @@
 </body>
 
 </html>
+
+<!--<tr ng-repeat="action in schedule">-->
+<!--<td>{{action.StartTime}}</td>-->
+<!--<td>{{action.EndTime}}</td>-->
+<!--<td>{{action.Description}}-->
+<!--<button class="delete" ng-click="deleteAction()"><i class="fa fa-trash" aria-hidden="true"></i></button>-->
+<!--<button class="update" ng-click="showAddForm = !showAddForm"><i class="fa fa-pencil" aria-hidden="true"></i></button>-->
+<!--</td>-->
+
+<!--</tr>-->

@@ -43,20 +43,98 @@ main .schedule {
   width: 80%;
   border-right: 1px solid #cacaca;
   border-top: 1px solid #cacaca; }
-  main .schedule tr.active {
-    background: #0ec0ce;
-    color: white; }
-  main .schedule tr th {
-    border-left: 1px solid #cacaca;
-    border-bottom: 1px solid #cacaca;
-    background: #ebebeb;
-    padding: 10px; }
-  main .schedule tr td {
-    border-left: 1px solid #cacaca;
-    border-bottom: 1px solid #cacaca;
-    padding: 10px; }
-    main .schedule tr td:nth-of-type(1) {
-      width: 20%; }
-    main .schedule tr td:nth-of-type(2) {
-      width: 20%; }
+  main .schedule .tr {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+    main .schedule .tr.active {
+      background: #0ec0ce;
+      color: white; }
+    main .schedule .tr .th {
+      border-left: 1px solid #cacaca;
+      border-bottom: 1px solid #cacaca;
+      background: #ebebeb;
+      padding: 10px; }
+      main .schedule .tr .th:nth-of-type(1) {
+        width: 20%; }
+      main .schedule .tr .th:nth-of-type(2) {
+        width: 20%; }
+      main .schedule .tr .th:nth-of-type(3) {
+        width: 60%; }
+    main .schedule .tr .td {
+      border-left: 1px solid #cacaca;
+      border-bottom: 1px solid #cacaca;
+      padding: 10px; }
+      main .schedule .tr .td input {
+        width: 100%;
+        height: 100%;
+        border: none; }
+        main .schedule .tr .td input:last-of-type {
+          width: 75%; }
+      main .schedule .tr .td .delete, main .schedule .tr .td .update {
+        float: right;
+        padding: 0;
+        margin: 0;
+        padding-left: 10px;
+        cursor: pointer;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        -moz-transition: .3s;
+        transition: .3s;
+        background: none;
+        color: black; }
+      main .schedule .tr .td .delete:hover {
+        color: red;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        -moz-transition: .3s;
+        transition: .3s; }
+      main .schedule .tr .td .update:hover {
+        color: #00bf00;
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        -moz-transition: .3s;
+        transition: .3s; }
+      main .schedule .tr .td:nth-of-type(1) {
+        width: 20%; }
+      main .schedule .tr .td:nth-of-type(2) {
+        width: 20%; }
+      main .schedule .tr .td:nth-of-type(3) {
+        width: 60%; }
+  main .schedule .tr.edit {
+    border: 2px solid #22d702; }
+    main .schedule .tr.edit .td {
+      border: none;
+      -webkit-box-shadow: 0px 0px 0px 1px #22d702;
+      box-shadow: 0px 0px 0px 1px #22d702; }
+
+main button {
+  display: block;
+  padding: 10px 20px;
+  background: #0ec0ce;
+  border: none;
+  font-size: 20px;
+  color: white;
+  margin: 20px auto; }
+
+main .add-form {
+  max-width: 400px;
+  margin: 20px auto; }
+  main .add-form input {
+    width: 49%;
+    display: inline-block;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; }
+    main .add-form input:last-of-type {
+      float: right; }
+  main .add-form textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    height: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; }
 
