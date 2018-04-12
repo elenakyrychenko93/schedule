@@ -24,7 +24,7 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
 
         $scope.StartTimePick = new Date();
         $scope.EndTimePick = new Date();
-        // console.log($scope.StartTimePick = $filter('StartTimePick')($scope.StartTimePick,'h:mm a'));
+
 
         $scope.hstep = 1;
         $scope.mstep = 1;
@@ -37,14 +37,19 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
         $scope.ismeridian = false;
 
         // timepicker------------------------
+        // timepickerEdit------------------------
+
+
+        // timepickerEdit------------------------
 
         $scope.addAction = function () {
 
             $scope.formIn = {
-                StartTime: $filter('mytime')($scope.mytime,'h:mm a') ,
-                EndTime: $scope.formInfo.EndTime,
+                StartTime: $scope.StartTimePick.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                EndTime: $scope.EndTimePick.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
                 Description: $scope.formInfo.Description
             };
+            // console.log($scope.StartTimePick);
 
 
             $.ajax({
@@ -116,9 +121,12 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
               </div>
               <div class="tr edit" ng-show="editMode == true">
 
-                   <div class="td"><input ng-model="action.StartTime" class="timepicker"></div>
-                    <div class="td"><input ng-model="action.EndTime" class="timepicker"></div>
-                    <div class="td"><input ng-model="action.Description">
+                   <div class="td">
+                   <input ng-model="action.StartTime" class="timepicker">
+                    <!--<div uib-timepicker ng-model="StartTimeEdit" show-meridian="ismeridian"></div>-->
+                   </div>
+                    <div class="td"><input ng-model="EndTimeEdit" class="timepicker"></div>
+                    <div class="td"><input ng-model="DescriptionEdit">
                     
                     <button class="update" ng-click="backToDefault()"><i class="fa fa-times" aria-hidden="true"></i></i></button>
                     <button class="update" ng-click="saveAction()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
@@ -129,6 +137,24 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
             const $ctrl = this;
             // console.log($scope.action);
             $scope.editMode = false;
+
+
+            // // timepickerEdit------------------------
+            //
+            // $scope.StartTimeEdit = $scope.action.StartTime;
+            // $scope.EndTimeEdit = $scope.action.EndTime;
+            //
+            // // $scope.hstep = 1;
+            // // $scope.mstep = 1;
+            // //
+            // // $scope.options = {
+            // //     hstep: [1, 2, 3],
+            // //     mstep: [1, 5, 10, 15, 25, 30]
+            // // };
+            // //
+            // // $scope.ismeridian = false;
+            //
+            // // timepickerEdit------------------------
 
 
             $ctrl.$postLink = function(){
@@ -159,6 +185,7 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
                 $scope.editMode = true;
 
 
+
             };
             $scope.saveAction = function () {
                 let actionToUpdate = $scope.action.id;
@@ -169,7 +196,7 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
                     Description: $scope.action.Description,
                     id: actionToUpdate
                 };
-                console.log($scope.action.StartTime);
+                // console.log($scope.action.StartTime);
 
                 // $.ajax({
                 //     type: "PATCH",
