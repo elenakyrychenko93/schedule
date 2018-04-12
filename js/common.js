@@ -1,9 +1,6 @@
 
-
 let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
     .controller('scheduleController', function ($scope, $filter, $element) {
-
-
 
         $scope.schedule = [];
 
@@ -18,26 +15,8 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
                 for (let key in data) {
                     $scope.schedule.push(data[key]);
                 }
-                // console.log($scope.schedule);
-                // $scope.schedule.push(...data);
-
                 $scope.$apply();
-
-
-
-
-                // $scope.databaseInfo = {
-                //     StartTime : data.schedule.StartTime,
-                //     EndTime : data.schedule.EndTime,
-                //     Description : data.schedule.Description
-                //
-                // };
-                //
-                // $scope.schedule.push($scope.databaseInfo);
-                // console.log($scope.schedule);
-                // $scope.$apply()
             }
-
 
         });
 
@@ -45,7 +24,7 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
 
         $scope.StartTimePick = new Date();
         $scope.EndTimePick = new Date();
-        console.log($scope.StartTimePick = $filter('StartTimePick')($scope.StartTimePick,'h:mm a'));
+        // console.log($scope.StartTimePick = $filter('StartTimePick')($scope.StartTimePick,'h:mm a'));
 
         $scope.hstep = 1;
         $scope.mstep = 1;
@@ -61,9 +40,7 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
 
         $scope.addAction = function () {
 
-
             $scope.formIn = {
-
                 StartTime: $filter('mytime')($scope.mytime,'h:mm a') ,
                 EndTime: $scope.formInfo.EndTime,
                 Description: $scope.formInfo.Description
@@ -75,15 +52,10 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
                 url: "https://articles-cdc1a.firebaseio.com/schedule-list.json",
                 data: JSON.stringify($scope.formIn),
                 success: function (data) {
-                    console.log(data.name);
+                    // console.log(data.name);
                     $scope.formIn.id = data.name;
                     $scope.schedule.push($scope.formIn);
                     $scope.$apply()
-
-                    // let form = document.getElementById('updateForm');
-
-                    // $scope.schedule = $scope.schedule.filter(i => i._id !== article._id);
-                    // $scope.$apply()
                 }
             });
 
@@ -161,7 +133,6 @@ let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.
 
             $ctrl.$postLink = function(){
                 // console.log($scope.action.StartTime);
-
             }
 
             $scope.deleteAction = function () {
