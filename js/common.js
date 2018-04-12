@@ -1,5 +1,9 @@
-let scheduleApp = angular.module("scheduleApp", [])
-    .controller('scheduleController', function ($scope) {
+
+
+let scheduleApp = angular.module("scheduleApp", ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
+    .controller('scheduleController', function ($scope, $filter, $element) {
+
+
 
         $scope.schedule = [];
 
@@ -16,7 +20,9 @@ let scheduleApp = angular.module("scheduleApp", [])
                 }
                 // console.log($scope.schedule);
                 // $scope.schedule.push(...data);
+
                 $scope.$apply();
+
 
 
 
@@ -35,13 +41,34 @@ let scheduleApp = angular.module("scheduleApp", [])
 
         });
 
+        // timepicker------------------------
+
+        $scope.StartTimePick = new Date();
+        $scope.EndTimePick = new Date();
+        console.log($scope.StartTimePick = $filter('StartTimePick')($scope.StartTimePick,'h:mm a'));
+
+        $scope.hstep = 1;
+        $scope.mstep = 1;
+
+        $scope.options = {
+            hstep: [1, 2, 3],
+            mstep: [1, 5, 10, 15, 25, 30]
+        };
+
+        $scope.ismeridian = false;
+
+        // timepicker------------------------
+
         $scope.addAction = function () {
 
+
             $scope.formIn = {
-                StartTime: $scope.formInfo.StartTime,
+
+                StartTime: $filter('mytime')($scope.mytime,'h:mm a') ,
                 EndTime: $scope.formInfo.EndTime,
                 Description: $scope.formInfo.Description
             };
+
 
             $.ajax({
                 type: "post",
@@ -67,7 +94,40 @@ let scheduleApp = angular.module("scheduleApp", [])
 
 
     })
-.directive('trAction', function () {
+
+    // .controller('FirstTimepickerCtrl', function ($scope, $log) {
+    //     $scope.mytime = new Date();
+    //
+    //     $scope.hstep = 1;
+    //     $scope.mstep = 1;
+    //
+    //     $scope.options = {
+    //         hstep: [1, 2, 3],
+    //         mstep: [1, 5, 10, 15, 25, 30]
+    //     };
+    //
+    //     $scope.ismeridian = false;
+    //     // $scope.toggleMode = function() {
+    //     //     $scope.ismeridian = ! $scope.ismeridian;
+    //     // };
+    //     //
+    //     // $scope.update = function() {
+    //     //     let d = new Date();
+    //     //     d.setHours( 14 );
+    //     //     d.setMinutes( 0 );
+    //     //     $scope.mytime = d;
+    //     // };
+    //     //
+    //     // $scope.changed = function () {
+    //     //     $log.log('Time changed to: ' + $scope.mytime);
+    //     // };
+    //     //
+    //     // $scope.clear = function() {
+    //     //     $scope.mytime = null;
+    //     // };
+    // })
+
+    .directive('trAction', function () {
     return {
         restrict: 'EA',
         scope: {
@@ -82,19 +142,28 @@ let scheduleApp = angular.module("scheduleApp", [])
                     <button class="update" ng-click="updateAction()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                  </div>
               </div>
-<div class="tr edit" ng-if="editMode == true">
-                   <div class="td"><input ng-model="action.StartTime" type="time"></div>
-                    <div class="td"><input ng-model="action.EndTime" type="time"></div>
-                    <div class="td"><input ng-model="action.Description" type="text">
+              <div class="tr edit" ng-show="editMode == true">
+
+                   <div class="td"><input ng-model="action.StartTime" class="timepicker"></div>
+                    <div class="td"><input ng-model="action.EndTime" class="timepicker"></div>
+                    <div class="td"><input ng-model="action.Description">
                     
                     <button class="update" ng-click="backToDefault()"><i class="fa fa-times" aria-hidden="true"></i></i></button>
                     <button class="update" ng-click="saveAction()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                  </div>
               </div>`,
 
-        link: function($scope, element, attrs) {
+        controller: ['$scope', '$element', function($scope, $element) {
+            const $ctrl = this;
             // console.log($scope.action);
             $scope.editMode = false;
+
+
+            $ctrl.$postLink = function(){
+                // console.log($scope.action.StartTime);
+
+            }
+
             $scope.deleteAction = function () {
                 let actionToDelete = $scope.action.id;
                 for(let i=0; i<$scope.schedule.length; i++) {
@@ -117,6 +186,7 @@ let scheduleApp = angular.module("scheduleApp", [])
             };
             $scope.updateAction = function () {
                 $scope.editMode = true;
+
 
             };
             $scope.saveAction = function () {
@@ -146,36 +216,12 @@ let scheduleApp = angular.module("scheduleApp", [])
                 $scope.editMode = false;
 
             }
-        }
+
+        }]
     }
     /*Метод-фабрика для директивы*/
 })
-// myModule.component('myComponent', {
-//     template: '<h1>Hello {{ $ctrl.getFullName() }}</h1>',
-//     bindings: {
-//         firstName: '<',
-//         lastName: '<'
-//     },
-//     controller: function() {
-//         this.getFullName = function() {
-//             return this.firstName + ' ' + this.lastName;
-//         };
-//     }
-// });
-// .component('trAction', {
-//     bindings: {
-//         data: '='
-//     },
-//     template: [
-//
-//         '<div class="container">',
-//         '<h1 ng-bind="$ctrl.data.title"></h1>',
-//         '<ul>',
-//         '<li ng-repeat="item in $ctrl.data.list track by $id(item)" ng-bind="item"></li>',
-//         '</ul>',
-//         '</div>'
-//     ].join('')
-// });
+
 
 
 

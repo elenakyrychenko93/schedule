@@ -7,25 +7,26 @@
     <title>Daily schedule</title>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:400,500,700" rel="stylesheet">
 
-    <link rel="icon" href="images/favicon.ico">
-    <link href="css/css-bundle.css" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <!--<link rel="icon" href="images/favicon.ico">-->
 
-    <!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>-->
-    <!--<script>-->
-    <!--// Initialize Firebase-->
-    <!--var config = {-->
-    <!--apiKey: "AIzaSyDWuSq3p5C_8XVOSJr6xeBWIbO6x0byqAY",-->
-    <!--authDomain: "articles-cdc1a.firebaseapp.com",-->
-    <!--databaseURL: "https://articles-cdc1a.firebaseio.com",-->
-    <!--projectId: "articles-cdc1a",-->
-    <!--storageBucket: "articles-cdc1a.appspot.com",-->
-    <!--messagingSenderId: "204849781599"-->
-    <!--};-->
-    <!--firebase.initializeApp(config);-->
-    <!--</script>-->
-    <script src="https://use.fontawesome.com/e7b5a02103.js"></script>
-    <script src="js/common.js"></script>
+    <script  type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-sanitize.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.js"></script>
+
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+
+    <script  type="text/javascript" src="https://use.fontawesome.com/e7b5a02103.js"></script>
+    <script  type="text/javascript" src="js/common.js"></script>
+
+    <link href="css/css-bundle.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -36,6 +37,7 @@
 </header>
 
 <main>
+
     <span class="meeting">Hello dear {{autorizationName}}! Your schedule for today:</span>
 
     <div class="schedule">
@@ -51,11 +53,54 @@
     <form novalidate class="add-form" id="addForm" ng-show="showAddForm">
         <!--ng-submit="addArticle(name, quote)"-->
 
-        <input ng-model="formInfo.StartTime" type="time" name="StartTime" placeholder="StartTime">
-        <input ng-model="formInfo.EndTime" type="time" name="EndTime" placeholder="EndTime">
+        <!--<input ng-model="formInfo.StartTime" class="timepicker" name="StartTime" placeholder="StartTime">-->
+        <div class="startTime">
+            <div class="name">StartTime</div>
+            <div class="timePicker">
+                <div uib-timepicker ng-model="StartTimePick" show-meridian="ismeridian"></div>
+                <!--<pre class="alert alert-info">Time is: {{EndTimePick | date:'shortTime' }}</pre>-->
+            </div>
+        </div>
+
+        <div class="endTime">
+            <div class="name">EndTime</div>
+            <div class="timePicker">
+                <div uib-timepicker ng-model="EndTimePick" show-meridian="ismeridian"></div>
+            </div>
+        </div>
+
+        <!--<input ng-model="formInfo.EndTime" class="timepicker" name="EndTime" placeholder="EndTime">-->
         <textarea type="text" ng-model="formInfo.Description" placeholder="Description" name="Description"></textarea>
         <button type="submit" ng-click="addAction()">Submit</button>
+
+
     </form>
+    <!--<input class="timepicker" type="text" >-->
+    <!--<div ng-controller="TimepickerDemoCtrl" class="timePicker">-->
+
+        <!--<div uib-timepicker ng-model="mytime" show-meridian="ismeridian"></div>-->
+
+        <!--&lt;!&ndash;<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-xs-6">&ndash;&gt;-->
+                <!--&lt;!&ndash;Hours step is:&ndash;&gt;-->
+                <!--&lt;!&ndash;<select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-xs-6">&ndash;&gt;-->
+                <!--&lt;!&ndash;Minutes step is:&ndash;&gt;-->
+                <!--&lt;!&ndash;<select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<hr>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>&ndash;&gt;-->
+
+    <!--</div>-->
+
 
 
 </main>
@@ -63,18 +108,7 @@
 <footer></footer>
 
 
-<script src="js/jquery-2.2.3.min.js"></script>
-<!--<script src="js/common.js"></script>-->
+
 </body>
 
 </html>
-
-<!--<tr ng-repeat="action in schedule">-->
-<!--<td>{{action.StartTime}}</td>-->
-<!--<td>{{action.EndTime}}</td>-->
-<!--<td>{{action.Description}}-->
-<!--<button class="delete" ng-click="deleteAction()"><i class="fa fa-trash" aria-hidden="true"></i></button>-->
-<!--<button class="update" ng-click="showAddForm = !showAddForm"><i class="fa fa-pencil" aria-hidden="true"></i></button>-->
-<!--</td>-->
-
-<!--</tr>-->

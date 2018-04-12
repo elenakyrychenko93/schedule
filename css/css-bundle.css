@@ -120,16 +120,13 @@ main button {
   margin: 20px auto; }
 
 main .add-form {
-  max-width: 400px;
+  max-width: 300px;
   margin: 20px auto; }
   main .add-form input {
-    width: 49%;
     display: inline-block;
     padding: 10px;
     font-family: 'Roboto', sans-serif;
     font-size: 16px; }
-    main .add-form input:last-of-type {
-      float: right; }
   main .add-form textarea {
     width: 100%;
     margin-top: 10px;
@@ -137,4 +134,38 @@ main .add-form {
     height: 100px;
     font-family: 'Roboto', sans-serif;
     font-size: 16px; }
+
+.timePicker {
+  max-width: 100%;
+  width: 600px; }
+
+.uib-time input {
+  margin: 5px 5px; }
+
+.startTime, .endTime {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .startTime > div, .endTime > div {
+    width: 50%; }
+  .startTime .name, .endTime .name {
+    padding: 0 20px; }
+
+td.uib-increment, .text-center {
+  display: none; }
+
+.uib-time input {
+  width: 60px; }
 
